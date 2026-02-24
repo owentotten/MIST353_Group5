@@ -1,11 +1,42 @@
-IF DB_ID('Group5') IS NULL
+IF DB_ID('Group5Database') IS NULL
 BEGIN
-    CREATE DATABASE Group5;
+    CREATE DATABASE Group5Database;
 END
 GO
+use master
+CREATE LOGIN NandaSurendra
 
-USE Group5;
+WITH PASSWORD = 'MI$T353Instructor';
+
+
+
+-- Step 2: Switch to your target database
+USE Group5Database;
 GO
+
+
+
+-- Step 3: Create a database user mapped to the login
+
+CREATE USER NandaSurendra
+
+FOR LOGIN NandaSurendra;
+
+
+
+-- Step 4: Grant EXECUTE permission on all stored procedures and UDFs
+
+GRANT EXECUTE TO NandaSurendra;
+
+
+
+-- Read access to all tables
+
+GRANT SELECT TO NandaSurendra;
+
+
+
+
 
 -- Drop child tables first
 DROP TABLE IF EXISTS AttendanceExcuse;

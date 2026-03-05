@@ -1,9 +1,13 @@
-IF DB_ID('Group5Database') IS NULL
+IF DB_ID('Group5') IS NULL
 BEGIN
-    CREATE DATABASE Group5Database;
+    CREATE DATABASE Group5;
 END
 GO
-use master
+
+-- Step 1: Create a login at the server level
+
+use master;
+
 CREATE LOGIN NandaSurendra
 
 WITH PASSWORD = 'MI$T353Instructor';
@@ -11,8 +15,8 @@ WITH PASSWORD = 'MI$T353Instructor';
 
 
 -- Step 2: Switch to your target database
-USE Group5Database;
-GO
+
+USE MIST_353_Group5;
 
 
 
@@ -35,8 +39,11 @@ GRANT EXECUTE TO NandaSurendra;
 GRANT SELECT TO NandaSurendra;
 
 
-
-
+DROP TABLE IF EXISTS AttendanceExcuse;
+DROP TABLE IF EXISTS Event;
+DROP TABLE IF EXISTS Officer;
+DROP TABLE IF EXISTS AppUSER;
+GO
 
 -- Drop child tables first
 DROP TABLE IF EXISTS AttendanceExcuse;
